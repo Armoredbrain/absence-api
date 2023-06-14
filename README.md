@@ -2,14 +2,14 @@
 
 ### Introduction
 
-Simple API with one endpoint : `/calendars/absences?start="Wed Jun 14 2023 14:23:30"&end="Fri Jul 7 2023 00:30:10"`
+Simple API with one endpoint : `/calendars/absences?start="2023-06-14T14:23:30.000Z"&end="2023-07-07T00:30:10.000Z"`
 Use to get absence mapped over month :
 
 ```json
 {
     "2023": {
-        "june": { "start": "Wed Jun 14 2023 14:23:30", "end": "Fri Jun 30 2023 23:59:59" },
-        "july": { "start": "Sat Jul 14 2023 00:00:00", "end": "Fri Jun 7 2023 00:30:10" }
+        "06": { "start": "2023-06-14T14:23:30.000Z", "end": "2023-06-14T14:23:30.000Z" },
+        "07": { "start": "2023-07-01T00:00:00.000Z", "end": "2023-07-07T00:30:10.000Z" }
     }
 }
 ```
