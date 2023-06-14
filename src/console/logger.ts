@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 
 dotenv.config();
 
-export class BotError {
+export class ApiError {
     code: number;
     information: Record<string, unknown>;
     isAxiosError: boolean;
