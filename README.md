@@ -1,9 +1,18 @@
-# Nodejs typescript boilerplate template
+# Absence API
 
 ### Introduction
 
-This is a simple boilerplate for services, you will find several feature that will help you get running with your service.
-It is far from perfect, so don't make any hesitation to make PR with your improved and usefull feature.
+Simple API with one endpoint : `/calendars/absences?start="Wed Jun 14 2023 14:23:30"&end="Fri Jul 7 2023 00:30:10"`
+Use to get absence mapped over month :
+
+```json
+{
+    "2023": {
+        "june": { "start": "Wed Jun 14 2023 14:23:30", "end": "Fri Jun 30 2023 23:59:59" },
+        "july": { "start": "Sat Jul 14 2023 00:00:00", "end": "Fri Jun 7 2023 00:30:10" }
+    }
+}
+```
 
 ### Getting started
 
@@ -27,7 +36,7 @@ Server will start on given port and run with nodemon to allow auto-reload
 
 #### Internal Service Name:
 
--   boilerplateservice
+-   Abscence Api
 
 ### Scripts
 

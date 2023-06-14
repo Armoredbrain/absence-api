@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate_nodejs",
+  "name": "absence_api",
   "version": "1.0.0",
-  "description": "Simple boilerplate for backend services",
+  "description": "Simple API to get absence mapping over month",
   "main": "src/index.ts",
   "license": "MIT",
   "engines": {

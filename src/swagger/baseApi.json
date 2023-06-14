@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "API boilerplate",
+        "title": "Absence API",
         "description": "This is the boilerplate API documentation",
         "version": "1.0.0"
     },
@@ -12,16 +12,7 @@
     ],
     "paths": {},
     "components": {
-        "securitySchemes": {
-            "basicAuth": {
-                "type": "http",
-                "scheme": "basic"
-            },
-            "bearerAuth": {
-                "type": "http",
-                "scheme": "bearer"
-            }
-        },
+        "securitySchemes": {},
         "schemas": {}
     }
 }
