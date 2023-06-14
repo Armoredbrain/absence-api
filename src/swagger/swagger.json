@@ -1,0 +1,27 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "API boilerplate",
+        "description": "This is the boilerplate API documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "paths": {},
+    "components": {
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
+        "schemas": {}
+    }
+}
