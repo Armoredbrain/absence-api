@@ -10,18 +10,18 @@ export interface Range {
 
 // ENUMS
 enum MonthIndex {
-    JANUARY = 1,
-    FEBRUARY = 2,
-    MARCH = 3,
-    APRIL = 4,
-    MAY = 5,
-    JUNE = 6,
-    JULY = 7,
-    AUGUST = 8,
-    SEPTEMBER = 9,
-    OCTOBER = 10,
-    NOVEMBER = 11,
-    DECEMBER = 12,
+    JANUARY = 0,
+    FEBRUARY = 1,
+    MARCH = 2,
+    APRIL = 3,
+    MAY = 4,
+    JUNE = 5,
+    JULY = 6,
+    AUGUST = 7,
+    SEPTEMBER = 8,
+    OCTOBER = 9,
+    NOVEMBER = 10,
+    DECEMBER = 11,
 }
 
 // DATE
@@ -30,7 +30,7 @@ export function getYearIndex(date: Date): number {
 }
 
 function getMonthIndex(date: Date): number {
-    return getMonth(date) + 1;
+    return getMonth(date);
 }
 
 function isLeapYear(year: number): boolean {
@@ -51,8 +51,9 @@ export function splitAbsenceByMonth(absence: Range): Range[] {
 // CORE LOGIC
 const START_OF_DAY = "00:00:00.000";
 const END_OF_DAY = "23:59:59.999";
-function formatMonthIndex(monthNumber: number): string {
-    return monthNumber.toString().length === 1 ? `0${monthNumber}` : String(monthNumber);
+function formatMonthIndex(monthIndex: number): string {
+    const userFriendlyMonthIndex = monthIndex + 1;
+    return String(userFriendlyMonthIndex).length === 1 ? `0${userFriendlyMonthIndex}` : String(userFriendlyMonthIndex);
 }
 
 function getMonthStart(month: Date): Date {
@@ -65,7 +66,7 @@ function getMonthEnd(month: Date): Date {
     const formattedMonthIndex = formatMonthIndex(monthIndex);
     let end = `${yearIndex}-${formattedMonthIndex}-31T${END_OF_DAY}Z`;
     if (
-        monthIndex % 2 === 0 &&
+        monthIndex % 2 === 1 &&
         monthIndex !== MonthIndex.AUGUST &&
         monthIndex !== MonthIndex.OCTOBER &&
         monthIndex !== MonthIndex.DECEMBER
