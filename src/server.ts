@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDoc from "./swagger/swagger.json";
-import { calendarRouter } from "./routes/calendarRouter";
+import { absenceRouter } from "./routes/absenceRouter";
 
 export const app = express();
 
@@ -29,4 +29,4 @@ if (localUrl.hostname.split(".").length > 2) {
 app.use(cors({ origin: corsOrigin ?? true, credentials: true }));
 
 app.use("/apiDocs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-app.use("/calendars", calendarRouter);
+app.use("/absences", absenceRouter);
