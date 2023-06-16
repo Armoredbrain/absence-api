@@ -5,7 +5,7 @@ interface DefaultApiResponse {
     code: string | number;
     message: string;
 }
-export async function getAbsenceMapping(
+export async function getSplitAbsenceByMonth(
     req: Request,
     res: Response<Range[] | DefaultApiResponse, Record<string, unknown>>
 ): Promise<void> {
@@ -17,7 +17,7 @@ export async function getAbsenceMapping(
     } catch (error) {
         logger.error(
             new ApiError(error, {
-                source: getAbsenceMapping.name,
+                source: getSplitAbsenceByMonth.name,
                 code: error.code,
             })
         );
