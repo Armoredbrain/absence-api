@@ -1,18 +1,19 @@
 import { Request, Response } from "express";
+import { splitAbsenceByMonth, convertAbsenceRangeIntoUtcRange, DateRange } from "../managers/main";
 import logger, { ApiError } from "../console/logger";
-import { splitAbsenceByMonth, Range } from "../managers/main";
+
 interface DefaultApiResponse {
     code: string | number;
     message: string;
 }
 export async function getSplitAbsenceByMonth(
     req: Request,
-    res: Response<Range[] | DefaultApiResponse, Record<string, unknown>>
+    res: Response<DateRange[] | DefaultApiResponse, Record<string, Date>>
 ): Promise<void> {
     try {
-        const start = new Date(String(req.query.start));
-        const end = new Date(String(req.query.end));
-        const absenceSplitByMonth = splitAbsenceByMonth({ start, end });
+        const start = String(req.query.start);
+        const end = String(req.query.end);
+        const absenceSplitByMonth = splitAbsenceByMonth(convertAbsenceRangeIntoUtcRange({ start, end }));
         res.status(200).json(absenceSplitByMonth);
     } catch (error) {
         logger.error(
