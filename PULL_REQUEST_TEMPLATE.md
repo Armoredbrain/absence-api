@@ -1,12 +1,11 @@
-# Story/Feature/Issue n° <number>
-
-### What is it about?
+## What is it about?
 
 <description>
 
 ### Check list
 
--   [ ] tests and coverage ok
+-   [ ] tests e2e ok
+-   [ ] tests unitaires ok
 -   [ ] update README.md
 -   [ ] update .env.example
 
