@@ -1,0 +1,115 @@
+{
+    "get": {
+        "description": "Get absence split by month",
+        "summary": "Will return absence date range splitted by month and in UTC",
+        "tags": ["absences"],
+        "operationId": "getAbsenceSplitByMonth",
+        "parameters": [
+            {
+                "in": "query",
+                "name": "start",
+                "schema": {
+                    "type": "string"
+                },
+                "description": "absence start date string, should be before end date"
+            },
+            {
+                "in": "query",
+                "name": "end",
+                "schema": {
+                    "type": "string"
+                },
+                "description": "absence end date string, should be after start date"
+            }
+        ],
+        "security": [],
+        "responses": {
+            "200": {
+                "description": "get absence split by month",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "start": {
+                                        "type": "string"
+                                    },
+                                    "end": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "Valid response on /absences/byMonth": {
+                                "value": [
+                                    {
+                                        "start": "2023-01-15T07:30:00.000Z",
+                                        "end": "2023-01-31T23:59:59.999Z"
+                                    },
+                                    {
+                                        "start": "2023-02-01T00:00:00.000Z",
+                                        "end": "2023-02-16T09:30:00.000Z"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "406": {
+                "description": "Date in query no being ISO8601",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../schemas/defaultApiResponse.json"
+                        },
+                        "examples": {
+                            "Invalid request": {
+                                "value": {
+                                    "code": 406,
+                                    "message": [
+                                        {
+                                            "type": "field",
+                                            "value": "true",
+                                            "msg": "Invalid value",
+                                            "path": "start",
+                                            "location": "query"
+                                        },
+                                        {
+                                            "type": "field",
+                                            "value": "false",
+                                            "msg": "Invalid value",
+                                            "path": "end",
+                                            "location": "query"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Start date in query being after end date",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../schemas/defaultApiResponse.json"
+                        },
+                        "examples": {
+                            "Invalid request": {
+                                "value": {
+                                    "code": 500,
+                                    "message": "Invalid interval"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

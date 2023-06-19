@@ -10,7 +10,11 @@
             "url": "/"
         }
     ],
-    "paths": {},
+    "paths": {
+        "/absences/byMonth": {
+            "$ref": "./routes/getSplitAbsenceByMonth.json"
+        }
+    },
     "components": {
         "securitySchemes": {},
         "schemas": {}
