@@ -5,4 +5,4 @@ import { validator } from "../middlewares/validator";
 
 export const absenceRouter = Router();
 
-absenceRouter.get("/absences", checkRangeQuery(), validator, getSplitAbsenceByMonth);
+absenceRouter.get("/splitByMonth", checkRangeQuery(), validator, getSplitAbsenceByMonth);
