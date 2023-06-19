@@ -22,7 +22,6 @@ export async function getSplitAbsenceByMonth(
                 code: error.code,
             })
         );
-
         res.status(500).json({ code: 500, message: error.message });
     }
 }

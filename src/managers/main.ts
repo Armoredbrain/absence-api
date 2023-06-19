@@ -42,6 +42,7 @@ function isLeapYear(year: number): boolean {
 }
 
 function convertToUtcDate(date: string): Date {
+    // new Date by default will return a converted date into UTC
     return new Date(date);
 }
 
