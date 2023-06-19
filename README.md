@@ -2,16 +2,14 @@
 
 ### Introduction
 
-Simple API with one endpoint : `/calendars/absences?start="2023-06-14T14:23:30.000Z"&end="2023-07-07T00:30:10.000Z"`
+Simple API with one endpoint : `/absences/splitByMonth?start="2023-06-14T14:23:30.000Z"&end="2023-07-07T00:30:10.000Z"`
 Use to get absence mapped over month :
 
 ```json
-{
-    "2023": {
-        "06": { "start": "2023-06-14T14:23:30.000Z", "end": "2023-06-14T14:23:30.000Z" },
-        "07": { "start": "2023-07-01T00:00:00.000Z", "end": "2023-07-07T00:30:10.000Z" }
-    }
-}
+[
+    { "start": "2023-06-14T14:23:30.000Z", "end": "2023-06-30T23:59:59.999Z" },
+    { "start": "2023-07-01T00:00:00.000Z", "end": "2023-07-07T00:30:10.000Z" }
+]
 ```
 
 ### Getting started
@@ -38,14 +36,16 @@ Server will start on given port and run with nodemon to allow auto-reload
 
 -   Abscence Api
 
+#### API documentation
+
+Launch server and go to `<your local host>/documentation`, you will land on a swagger documentation page
+
 ### Scripts
 
 Before all you can run `nvm use`, it will change your node version to lts based on `.nvmrc`. If you haven't installed it yet follow this steps:
 
--   `nvm install 16.13.0`
+-   `nvm install 18.16.0`
 -   `nvm use`
-
-Currently last lts version is `16.13.0`, it will change sooner or later. So when it does, simply change content in `.nvmrc` then run `nvm install 16.13.0` and `nvm use`
 
 ### Build app
 

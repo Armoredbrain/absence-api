@@ -28,5 +28,5 @@ if (localUrl.hostname.split(".").length > 2) {
 }
 app.use(cors({ origin: corsOrigin ?? true, credentials: true }));
 
-app.use("/apiDocs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use("/absences", absenceRouter);
