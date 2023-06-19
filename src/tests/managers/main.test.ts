@@ -1,4 +1,4 @@
-import { convertAbsenceRangeIntoUtcRange, splitAbsenceByMonth } from "../../managers/main";
+import { convertToUtcDate, splitAbsenceByMonth } from "../../managers/main";
 
 describe("splitAbsenceByMonth", () => {
     test("should return absence range splitted by month", () => {
@@ -113,27 +113,15 @@ describe("splitAbsenceByMonth", () => {
     });
 });
 
-describe("convertAbsenceRangeIntoUtcRange", () => {
+describe("convertToUtcDate", () => {
     test("should NOT alter date if arguments are in UTC", () => {
-        const utcDate = convertAbsenceRangeIntoUtcRange({
-            start: "2023-01-15T14:30:00.000Z",
-            end: "2023-02-16T16:30:00.000Z",
-        });
+        const utcDate = convertToUtcDate("2023-01-15T14:30:00.000Z");
 
-        expect(utcDate).toEqual({
-            start: new Date("2023-01-15T14:30:00.000Z"),
-            end: new Date("2023-02-16T16:30:00.000Z"),
-        });
+        expect(utcDate).toEqual(new Date("2023-01-15T14:30:00.000Z"));
     });
     test("should return date in UTC if timezone from query is not UTC", async () => {
-        const utcDate = convertAbsenceRangeIntoUtcRange({
-            start: "2023-01-15T14:30:00.000+07:00",
-            end: "2023-02-16T16:30:00.000+07:00",
-        });
+        const utcDate = convertToUtcDate("2023-01-15T14:30:00.000+07:00");
 
-        expect(utcDate).toEqual({
-            start: new Date("2023-01-15T07:30:00.000Z"),
-            end: new Date("2023-02-16T09:30:00.000Z"),
-        });
+        expect(utcDate).toEqual(new Date("2023-01-15T07:30:00.000Z"));
     });
 });

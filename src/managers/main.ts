@@ -2,34 +2,8 @@ import eachMonthOfInterval from "date-fns/eachMonthOfInterval";
 import getMonth from "date-fns/getMonth";
 import getYear from "date-fns/getYear";
 
-// INTERFACES
-export interface DateRange {
-    start: Date;
-    end: Date;
-}
-export interface StringRange {
-    start: string;
-    end: string;
-}
-
-// ENUMS
-enum MonthIndex {
-    JANUARY = 0,
-    FEBRUARY = 1,
-    MARCH = 2,
-    APRIL = 3,
-    MAY = 4,
-    JUNE = 5,
-    JULY = 6,
-    AUGUST = 7,
-    SEPTEMBER = 8,
-    OCTOBER = 9,
-    NOVEMBER = 10,
-    DECEMBER = 11,
-}
-
-// DATE
-export function getYearIndex(date: Date): number {
+// DATE METHOD & WRAPPER
+function getYearIndex(date: Date): number {
     return getYear(date);
 }
 
@@ -41,12 +15,16 @@ function isLeapYear(year: number): boolean {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
 
-function convertToUtcDate(date: string): Date {
+export function convertToUtcDate(date: string): Date {
     // new Date by default will return a converted date into UTC
     return new Date(date);
 }
 
 // FUNCTIONAL
+export interface DateRange {
+    start: Date;
+    end: Date;
+}
 export function splitAbsenceByMonth(absence: DateRange): DateRange[] {
     const months = eachMonthOfInterval(absence);
     return months.reduce((absenceSplitByMonth: DateRange[], month: Date, index: number) => {
@@ -55,13 +33,6 @@ export function splitAbsenceByMonth(absence: DateRange): DateRange[] {
         absenceSplitByMonth.push({ start, end });
         return absenceSplitByMonth;
     }, []);
-}
-
-export function convertAbsenceRangeIntoUtcRange(absence: StringRange): DateRange {
-    return {
-        start: convertToUtcDate(absence.start),
-        end: convertToUtcDate(absence.end),
-    };
 }
 
 // CORE LOGIC
@@ -77,6 +48,20 @@ function getMonthStart(month: Date): Date {
     return new Date(`${getYearIndex(month)}-${formatMonthIndex(getMonthIndex(month))}-01T${START_OF_DAY}${TIMEZONE}`);
 }
 
+enum MonthIndex {
+    JANUARY = 0,
+    FEBRUARY = 1,
+    MARCH = 2,
+    APRIL = 3,
+    MAY = 4,
+    JUNE = 5,
+    JULY = 6,
+    AUGUST = 7,
+    SEPTEMBER = 8,
+    OCTOBER = 9,
+    NOVEMBER = 10,
+    DECEMBER = 11,
+}
 function getMonthEnd(month: Date): Date {
     const yearIndex = getYearIndex(month);
     const monthIndex = getMonthIndex(month);

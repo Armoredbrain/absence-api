@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { splitAbsenceByMonth, convertAbsenceRangeIntoUtcRange, DateRange } from "../managers/main";
+import { splitAbsenceByMonth, DateRange, convertToUtcDate } from "../managers/main";
 import logger, { ApiError } from "../console/logger";
 
 interface DefaultApiResponse {
@@ -13,7 +13,7 @@ export async function getSplitAbsenceByMonth(
     try {
         const start = String(req.query.start);
         const end = String(req.query.end);
-        const absenceSplitByMonth = splitAbsenceByMonth(convertAbsenceRangeIntoUtcRange({ start, end }));
+        const absenceSplitByMonth = splitAbsenceByMonth({ start: convertToUtcDate(start), end: convertToUtcDate(end) });
         res.status(200).json(absenceSplitByMonth);
     } catch (error) {
         logger.error(

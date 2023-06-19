@@ -71,13 +71,11 @@ describe("absence", () => {
         res.json = jest.fn().mockReturnValue(res);
 
         const splitAbsenceByMonthSpy = jest.spyOn(mainManager, "splitAbsenceByMonth");
-        const convertAbsenceRangeIntoUtcRangeSpy = jest.spyOn(mainManager, "convertAbsenceRangeIntoUtcRange");
+        const convertToUtcDateSpy = jest.spyOn(mainManager, "convertToUtcDate");
         await getSplitAbsenceByMonth(req as Request, res as Response);
 
-        expect(convertAbsenceRangeIntoUtcRangeSpy).toHaveBeenCalledWith({
-            start: "2023-02-16T16:30:00.000Z",
-            end: "2023-01-15T14:30:00.000Z",
-        });
+        expect(convertToUtcDateSpy).toHaveBeenNthCalledWith(1, "2023-02-16T16:30:00.000Z");
+        expect(convertToUtcDateSpy).toHaveBeenNthCalledWith(2, "2023-01-15T14:30:00.000Z");
         expect(splitAbsenceByMonthSpy).toHaveBeenCalledWith({
             start: new Date("2023-02-16T16:30:00.000Z"),
             end: new Date("2023-01-15T14:30:00.000Z"),
