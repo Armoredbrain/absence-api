@@ -2,7 +2,6 @@ import express from "express";
 import morganMiddleware from "./console/morganMiddleware";
 import helmet from "helmet";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDoc from "./swagger/swagger.json";
@@ -12,7 +11,6 @@ export const app = express();
 
 dotenv.config();
 
-app.use(cookieParser());
 app.use(helmet());
 app.use(morganMiddleware);
 app.use(
